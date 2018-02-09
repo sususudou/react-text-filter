@@ -22,10 +22,10 @@ export class Column extends React.Component{
         }
     }
 
-    connectChildFormToThis(childValue,self){
-        self.setState({
-            ...self.state,
-            input:childValue,
+    connectChildFormToThis(value){
+        this.setState({
+            ...this.state,
+            input:value,
         })
     }
 
@@ -39,7 +39,7 @@ export class Column extends React.Component{
     render(){
         return(
             <div className="column">
-                <Text func={this.connectChildFormToThis} parentRef={this} />
+                <Text func={this.connectChildFormToThis.bind(this)} />
                 {(this.state.input) ? `「${this.state.input}」を含むItem` : '全件表示'}
                 <ItemList 
                     list={this.state.list}
