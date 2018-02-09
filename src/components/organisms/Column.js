@@ -6,11 +6,9 @@ export class Column extends React.Component{
         super(props)
         this.state={
             input: null,
-            list: [
+            list: [{id: 1,
+                    message: "おはよう"},
                 {
-                    id: 1,
-                    message: "おはよう"
-                }, {
                     id: 2,
                     message: "こんにちは"
                 }, {
@@ -23,21 +21,24 @@ export class Column extends React.Component{
             ]
         }
     }
+
     connectChildFormToThis(childValue,self){
         self.setState({
             ...self.state,
             input:childValue,
         })
     }
+
     filterByText(list,ruleString = ''){
         if(ruleString === '') return list
         return list.filter(item=>{
             return (item.message.includes(ruleString))
         })
     }
+    
     render(){
         return(
-            <div ref={(self)=>{this.Column = self}} className="column">
+            <div className="column">
                 <Text func={this.connectChildFormToThis} parentRef={this} />
                 {(this.state.input) ? `「${this.state.input}」を含むItem` : '全件表示'}
                 <ItemList 
